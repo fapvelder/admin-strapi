@@ -1,6 +1,7 @@
 import axios from "axios";
 import { decrypt } from "../src/api/smtp-mail/content-types/smtp-mail/lifecycles";
-
+import dotenv from "dotenv";
+dotenv.config();
 export default async ({ env }) => ({
   email: {
     config: {
@@ -21,9 +22,9 @@ export default async ({ env }) => ({
 });
 
 const getSMTPConfig = async () => {
-  const { data } = await axios.get("http://127.0.0.1:5000/smtp");
-  console.log(data);
-  console.log(decrypt(data.password));
+  const serverURL = process.env.SERVER_URL;
+  const { data } = await axios.get(`${serverURL}/smtp`);
+
   return {
     host: data.host,
     port: data.port,

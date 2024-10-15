@@ -4,7 +4,7 @@
 
 import { factories } from "@strapi/strapi";
 import axios from "axios";
-const apiUrl = "http://localhost:5000";
+const apiUrl = process.env.SERVER_URL;
 
 export default factories.createCoreController(
   "api::smtp-mail.smtp-mail",

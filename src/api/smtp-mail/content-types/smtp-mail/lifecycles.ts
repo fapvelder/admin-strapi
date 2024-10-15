@@ -1,8 +1,9 @@
 import axios from "axios";
 import crypto from "crypto";
 import { exec } from "child_process";
-
-export const secretKey = "thisisasecretkey";
+import dotenv from "dotenv";
+dotenv.config();
+export const secretKey = process.env.SECRET_KEY;
 const key = crypto.scryptSync(secretKey, "salt", 32); // Derive a key from the passphrase
 
 // Function to encrypt text
@@ -32,17 +33,15 @@ export default {
   async afterUpdate(event) {
     // Check if the entry was published
     const { result } = event;
-    const data = await axios.put(
-      "http://localhost:5000/smtp/67079f178b528da829ff07eb",
-      {
-        host: result.host,
-        secure: result.secure,
-        port: result.port,
-        disableLogs: result.disableLogs,
-        username: result.username,
-        password: result.password,
-      }
-    );
+    const serverUrl = process.env.SERVER_URL;
+    const data = await axios.put(`${serverUrl}/smtp/67079f178b528da829ff07eb`, {
+      host: result.host,
+      secure: result.secure,
+      port: result.port,
+      disableLogs: result.disableLogs,
+      username: result.username,
+      password: result.password,
+    });
     if (data) {
       // console.log(data);
       // exec("yarn build && yarn develop", (err, stdout, stderr) => {
@@ -57,7 +56,7 @@ export default {
   },
 
   async beforeFindMany(event) {
-    const apiUrl = "http://localhost:5000";
+    const apiUrl = process.env.SERVER_URL;
 
     // Fetch the SMTP data from the external API
     const response = await axios.get(`${apiUrl}/smtp`);
