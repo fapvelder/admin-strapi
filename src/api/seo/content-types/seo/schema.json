@@ -1,0 +1,41 @@
+{
+  "kind": "singleType",
+  "collectionName": "seos",
+  "info": {
+    "singularName": "seo",
+    "pluralName": "seos",
+    "displayName": "seo"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "text"
+    },
+    "imageUrl": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": true
+    },
+    "imageAlt": {
+      "type": "string"
+    },
+    "viewport": {
+      "type": "string"
+    },
+    "robots": {
+      "type": "string"
+    }
+  }
+}

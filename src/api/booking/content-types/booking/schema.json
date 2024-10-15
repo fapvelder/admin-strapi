@@ -1,0 +1,85 @@
+{
+  "kind": "collectionType",
+  "collectionName": "bookings",
+  "info": {
+    "singularName": "booking",
+    "pluralName": "bookings",
+    "displayName": "bookings",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "phone": {
+      "type": "string",
+      "required": true
+    },
+    "representative": {
+      "type": "string",
+      "required": true
+    },
+    "organization": {
+      "type": "string",
+      "required": true
+    },
+    "email": {
+      "type": "email",
+      "required": true
+    },
+    "address": {
+      "type": "string",
+      "required": true
+    },
+    "participants": {
+      "type": "integer",
+      "required": true,
+      "min": 1
+    },
+    "visitDate": {
+      "type": "date",
+      "required": true
+    },
+    "timeSlot": {
+      "type": "enumeration",
+      "enum": [
+        "morning",
+        "afternoon"
+      ],
+      "required": true
+    },
+    "arrival": {
+      "type": "enumeration",
+      "enum": [
+        "self-arrival",
+        "company"
+      ],
+      "default": "company",
+      "required": true
+    },
+    "statusBooking": {
+      "type": "enumeration",
+      "enum": [
+        "waiting",
+        "confirmed",
+        "cancelled"
+      ],
+      "default": "waiting",
+      "required": true
+    },
+    "notes": {
+      "type": "text"
+    },
+    "location": {
+      "type": "enumeration",
+      "enum": [
+        "Hồ Chí Minh",
+        "Vĩnh Long",
+        "Đà Nẵng",
+        "Hưng Yên"
+      ],
+      "required": true
+    }
+  }
+}
